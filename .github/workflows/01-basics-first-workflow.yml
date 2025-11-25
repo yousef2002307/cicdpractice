@@ -1,1 +1,9 @@
 name: 01-basics-first-workflow
+
+on:
+    workflow_dispatch
+
+
+jobs:
+      print-hello-world:
+       
