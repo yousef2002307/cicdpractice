@@ -1,6 +1,7 @@
-name: 01-basics-first-workflow2
+name: 01-basics-first-workflow
 
-
+on:
+  workflow_dispatch:
 
 jobs:
   print-hello-world22:
