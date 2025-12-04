@@ -1,7 +1,6 @@
 name: 01-basics-first-workflow
 
-on:
-  workflow_dispatch:
+on: push
 
 jobs:
   print-hello-world22:
