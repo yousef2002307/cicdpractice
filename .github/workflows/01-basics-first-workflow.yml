@@ -1,6 +1,9 @@
 name: 01-basics-first-workflow
 
-on: push
+on: 
+  pull_request:
+      types:
+        - closed
 
 jobs:
   print-hello-world22:
