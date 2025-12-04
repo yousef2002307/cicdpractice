@@ -1,0 +1,13 @@
+name: 01-basics-first-workflow
+
+on: 
+  pull_request:
+      types:
+        - closed
+
+jobs:
+  print-hello-world22:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello, world!"
