@@ -9,8 +9,14 @@ on:
     #   - main
     # branches-ignore:
     #   - main
-    tags:
-      - v1
+    # tags:
+    #   - v1
+    # tags-ignore:
+    #   - v1
+
+    paths:
+      - "routes/web.php"
+
 
 
 
