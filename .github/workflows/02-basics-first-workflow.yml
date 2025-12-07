@@ -1,9 +1,12 @@
 name: 02-basics-first-workflow
 
 on: 
-  pull_request:
-      types:
-        - closed
+  # pull_request:
+  #     types:
+  #       - closed
+  push:
+    branches:
+      - main
 
 jobs:
   print-hello-world22:
