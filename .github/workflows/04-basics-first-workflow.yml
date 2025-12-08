@@ -1,0 +1,12 @@
+name: 04-basics-first-workflow
+
+on: 
+  repository_dispatch:
+    types: [run-test]
+
+jobs:
+  print-hello-world22:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello, world!"
