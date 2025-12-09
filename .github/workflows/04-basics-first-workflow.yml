@@ -1,8 +1,8 @@
 name: 04-basics-first-workflow
 
 on: 
-  repository_dispatch:
-    types: [run-test]
+  schedule:
+    - cron: "15 4,5 * * *"
 
 jobs:
   print-hello-world22:
