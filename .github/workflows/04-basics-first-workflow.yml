@@ -2,7 +2,7 @@ name: 04-basics-first-workflow
 
 on: 
   schedule:
-    - cron: "15 4,5 * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   print-hello-world22:
