@@ -18,14 +18,14 @@ return [
             /*
              * The name of the header containing the signature.
              */
-            'signature_header_name' => 'X-Hub-Signature',
+            'signature_header_name' => 'X-Hub-Signature-256',
 
             /*
              *  This class will verify that the content of the signature header is valid.
              *
              * It should implement \Spatie\WebhookClient\SignatureValidator\SignatureValidator
              */
-            'signature_validator' => \Spatie\WebhookClient\SignatureValidator\DefaultSignatureValidator::class,
+            'signature_validator' => \App\Services\GitHubSignatureValidator::class,
 
             /*
              * This class determines if the webhook call should be stored and processed.
