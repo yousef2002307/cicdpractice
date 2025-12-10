@@ -19,19 +19,13 @@ class VerifyGitHubSignature
             throw InvalidConfig::couldNotFindConfig($configName);
         }
 
-        $validatorClass = $config->signatureValidator;
-
-        if (! class_exists($validatorClass)) {
-            // Fallback generic exception if specific static method doesn't exist in older versions
-            throw new \Exception("Invalid signature validator class: {$validatorClass}");
-        }
-
-        $validator = app($validatorClass);
+        $validator = $config->signatureValidator;
 
         if (! $validator->isValid($request, $config)) {
             return response()->json(['message' => 'Invalid signature.'], 400);
         }
 
         return $next($request);
+        
     }
 }
