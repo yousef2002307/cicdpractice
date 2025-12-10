@@ -1,0 +1,11 @@
+name: 05-basics-context
+
+on: 
+  workflow_dispatch
+
+jobs:
+  print-context-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print context data
+        run: echo "${{ github.github_actor }}"
