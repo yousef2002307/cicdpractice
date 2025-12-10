@@ -16,6 +16,7 @@ class GitHubSignatureValidator implements SignatureValidator
         if (! $signature) {
             return false;
         }
+        
 
         $signingSecret = $config->signingSecret;
 
