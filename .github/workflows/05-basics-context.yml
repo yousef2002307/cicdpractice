@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print context data
-        run: echo "${{ github.action_ref }}"
+        run: echo "Event name: ${{ github.event_name }}"
