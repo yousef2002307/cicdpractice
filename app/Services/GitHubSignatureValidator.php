@@ -35,6 +35,7 @@ class GitHubSignatureValidator implements SignatureValidator
             'received_signature' => $signature,
             'computed_signature' => $expected,
             'match' => hash_equals($expected, $signature)
+            
         ]);
 
         return hash_equals($expected, $signature);
