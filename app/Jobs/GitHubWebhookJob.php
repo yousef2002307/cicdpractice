@@ -2,20 +2,12 @@
 
 namespace App\Jobs;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Queue\Queueable;
 
-class GitHubWebhookJob implements ShouldQueue
+
+use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
+
+class GitHubWebhookJob extends ProcessWebhookJob
 {
-    use Queueable;
-
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Execute the job.
