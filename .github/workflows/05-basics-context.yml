@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print context data
-        run: echo "${{ job.status }}"
+        run: echo "${{ toJSON(github) }}"
