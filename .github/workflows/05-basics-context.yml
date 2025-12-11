@@ -1,9 +1,10 @@
 name: 05-basics-context
 run-name: "Hello ${{ github.actor }}. ${{ github.run_number }}" 
 on: 
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      - closed
+    
 
 jobs:
   print-context-data:
