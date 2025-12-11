@@ -9,6 +9,7 @@ on:
 jobs:
   print-context-data:
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
     steps:
       - name: Print context data
         run: echo "${{ toJSON(github) }}"
