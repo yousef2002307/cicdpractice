@@ -1,7 +1,9 @@
 name: 05-basics-context
 run-name: "Hello ${{ github.actor }}. ${{ github.run_number }}" 
 on: 
-  workflow_dispatch
+  push:
+    branches:
+      - main
 
 jobs:
   print-context-data:
