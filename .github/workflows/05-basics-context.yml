@@ -10,6 +10,7 @@ env:
 jobs:
   print-context-data:
     runs-on: ubuntu-latest
+    environment: jo
     steps:
       - name: Print context data
         run: |
