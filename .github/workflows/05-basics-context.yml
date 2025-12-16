@@ -1,15 +1,17 @@
 name: 05-basics-context
-run-name: "Hello ${{ github.actor }}. ${{ github.run_number }}" 
+run-name: "Hello ${{ github.actor }}. ${{ github.run_number }}"
+
+on: [push, pull_request]
 
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   NAME: 'GDGK5'
-on: push
-    
 
 jobs:
   print-context-data:
     runs-on: ubuntu-latest
     steps:
-      - name: Print context data1
-        run: echo $NAME
+      - name: Print context data
+        run: |
+          echo "Name: $NAME"
+          echo "PR Number: $PR_NUMBER"
