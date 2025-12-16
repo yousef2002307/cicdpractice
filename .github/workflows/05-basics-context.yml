@@ -13,5 +13,6 @@ jobs:
     steps:
       - name: Print context data
         run: |
-          echo "Name: $NAME"
-          echo "PR Number: $PR_NUMBER"
+          echo ${{ env.NAME }}
+          echo ${{ env.PR_NUMBER }}
+         
