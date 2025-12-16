@@ -13,6 +13,6 @@ jobs:
     steps:
       - name: Print context data
         run: |
-          echo ${{ vars.jo }}
+          echo ${{ vars.JO }}
           echo ${{ env.PR_NUMBER }}
          
