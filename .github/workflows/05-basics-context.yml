@@ -1,18 +1,18 @@
-name: 05-basics-context
-run-name: "Hello ${{ github.actor }}. ${{ github.run_number }}"
+name: 11 Basics Expressions
+run-name: ${{ github.actor }} Explaining Expressions - Try Number ${{ github.run_number }}
 
-on: [push, pull_request]
+env: 
+  RUN_NUMBER: ${{ github.run_number == 1 }}
+  
 
-env:
-  PR_NUMBER: ${{ github.event.pull_request.number }}
-  NAME: 'GDGK5'
+on: 
+  workflow_dispatch
 
 jobs:
-  print-context-data:
+  print-hello-world:
     runs-on: ubuntu-latest
     steps:
-      - name: Print context data
-        run: |
-          echo ${{ secrets.JOSEC }}
-          
-         
+      - name: Print Hello World
+        # run: echo ${{ env.RUN_NUMBER }}
+        # run: echo ${{ env.TESTING_VALUE }}
+        run: echo ${{ env.RUN_NUMBER }}
