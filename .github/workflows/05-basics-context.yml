@@ -2,8 +2,8 @@ name: 11 Basics Expressions
 run-name: ${{ github.actor }} Explaining Expressions - Try Number ${{ github.run_number }}
 
 env: 
-  RUN_NUMBER: ${{ github.run_number == 1 }}
-  
+  RUN_NUMBER: ${{ github.run_number > 1 && 'greater than 1' || 'less than 1' }}
+  TESTING_VALUE: ${{ contains('Hello Wolrd', 'Wor') }}
 
 on: 
   workflow_dispatch
@@ -15,4 +15,8 @@ jobs:
       - name: Print Hello World
         # run: echo ${{ env.RUN_NUMBER }}
         # run: echo ${{ env.TESTING_VALUE }}
-        run: echo ${{ env.RUN_NUMBER }}
+        run: exit 1
+      
+      - name: Print Hello World 2
+        if: ${{ failure() }}
+        run: echo ${{ env.TESTING_VALUE }}
