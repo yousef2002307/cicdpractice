@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Build Project
         run: exit 1
-        run: echo "hello world"
+       # run: echo "hello world"
 
   Test:
     runs-on: ubuntu-latest
