@@ -1,17 +1,12 @@
-name: 14 Basics Matrix
-run-name: ${{ github.actor }} Explaining Matrix - Try Number ${{ github.run_number }}
+name: 15 containers
+run-name: ${{ github.actor }} Explaining containers - Try Number ${{ github.run_number }}
 
 on: 
   workflow_dispatch
 
 jobs:
   Build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 2
-      matrix:
-        os: [ubuntu-latest]
-        php_version: [8.2]
+    runs-on: ubuntu-latest
     steps:
       - name: Build Project
         run: php -v
