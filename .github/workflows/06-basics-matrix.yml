@@ -8,5 +8,8 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - name: Build Project
-        run: php -v
+      - name: Setup PHP
+        uses: nanasess/setup-php@v4
+        with:
+          php-version: 7.4
+      - run: php -v
