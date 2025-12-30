@@ -7,11 +7,13 @@ on:
 jobs:
   redis-job:
     runs-on: ubuntu-latest
-    container:
-      image: php:7.4 #the name of image in docker hub or the one you created
     services:
       redis: #you have to give name of service unlike container as you can have more than one service
         image: redis:latest
     steps:
+      - name: Setup redis
+        run: |
+          sudo apt-get install redis -y
+          sudo service redis-server start
       - name: Check redis
         run: redis-cli ping
