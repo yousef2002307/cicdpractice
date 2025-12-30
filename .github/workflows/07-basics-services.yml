@@ -1,0 +1,17 @@
+name: 15 services
+run-name: ${{ github.actor }} Explaining services - Try Number ${{ github.run_number }}
+
+on: 
+  workflow_dispatch
+
+jobs:
+  redis-job:
+    runs-on: ubuntu-latest
+    container:
+      image: php:7.4 #the name of image in docker hub or the one you created
+    services:
+      redis: #you have to give name of service unlike container as you can have more than one service
+        image: redis:latest
+    steps:
+      - name: Check redis
+        run: redis-cli ping
