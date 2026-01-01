@@ -5,15 +5,8 @@ on:
   workflow_dispatch
 
 jobs:
-  redis-job:
+  print-hello-world22:
     runs-on: ubuntu-latest
-    services:
-      redis: #you have to give name of service unlike container as you can have more than one service
-        image: redis:latest
     steps:
-      - name: Setup redis
-        run: |
-          sudo apt-get install redis -y
-          sudo service redis-server start
-      - name: Check redis
-        run: redis-cli ping
+      - name: Print Hello World
+        uses: ./.github/actions/print-hello-world
