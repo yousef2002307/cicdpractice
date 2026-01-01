@@ -8,5 +8,7 @@ jobs:
   print-hello-world22:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Print Hello World
         uses: ./.github/actions/print-hello-world
