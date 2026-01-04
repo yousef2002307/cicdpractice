@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: gh
-        run: gh create issue --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
+        run: gh issue create --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
