@@ -8,7 +8,9 @@ jobs:
   print-hello-world22:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
       - name: gh
-        run: gh issue create --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow." --repo ${{ github.repository }}
+        run: gh issue create --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
