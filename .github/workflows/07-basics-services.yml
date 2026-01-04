@@ -1,4 +1,4 @@
-name: 15 services
+name: 15 gh achtions
 run-name: ${{ github.actor }} Explaining services - Try Number ${{ github.run_number }}
 
 on: 
@@ -8,7 +8,7 @@ jobs:
   print-hello-world22:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Print Hello World
-        uses: ./.github/actions/print-hello-world
+      - name: gh
+        run: gh create issue --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
