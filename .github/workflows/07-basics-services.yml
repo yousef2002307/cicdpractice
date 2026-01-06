@@ -1,16 +1,21 @@
-name: 15 gh achtions
-run-name: ${{ github.actor }} Explaining services - Try Number ${{ github.run_number }}
+name: Example 01 - Commenting on PR
+run-name: Example 01 - Commenting on PR
 
 on: 
-  workflow_dispatch
+  pull_request:
+    types: 
+      - closed
 
 jobs:
-  print-hello-world22:
+  comment-on-pr-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4.2.2
-      - name: gh
-        run: gh issue create --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
+
+      - name: comment on PR
+        if: github.event.pull_request.merged == true
+        run: gh pr comment $PR_NUMBER --body "We will not be merging you PR. Please update your code to satisfy our requirements and open a new PR."
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
