@@ -26,6 +26,6 @@ class VerifyGitHubSignature
         }
 
         return $next($request);
-        
+
     }
 }
