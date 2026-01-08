@@ -1,16 +1,30 @@
-name: 15 gh achtions
-run-name: ${{ github.actor }} Explaining services - Try Number ${{ github.run_number }}
+name: Example 02 - Code Formatting with Laravel Pint
+run-name: Example 02 - Code Formatting with Laravel Pint
 
 on: 
-  workflow_dispatch
+  push:
+    branches:
+      - main
 
 jobs:
-  print-hello-world22:
+  run-pint-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4.2.2
-      - name: gh
-        run: gh issue create --title "Hello World from GH Actions" --body "This is a test issue created from a GitHub Actions workflow."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: install PHP & Composer (IF YOU WANT) #because it already instaled on ubantu latest
+      
+      - name: install laravel pint
+        run: composer require laravel/pint --dev
+      
+      - name: run pint
+        run: ./vendor/bin/pint
+      
+      - name: commit changes back
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Run Pint updated" || exit 0
+          git push 
