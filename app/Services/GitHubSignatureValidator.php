@@ -16,7 +16,6 @@ class GitHubSignatureValidator implements SignatureValidator
         if (! $signature) {
             return false;
         }
-        
 
         $signingSecret = $config->signingSecret;
 
@@ -27,15 +26,15 @@ class GitHubSignatureValidator implements SignatureValidator
         // GitHub sends signature as 'sha256=...'
         $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
 
-        $expected = 'sha256=' . $computedSignature;
-        
+        $expected = 'sha256='.$computedSignature;
+
         // Debugging logs
         \Log::info('GitHub Webhook Signature Check', [
             'header_name' => $config->signatureHeaderName,
             'received_signature' => $signature,
             'computed_signature' => $expected,
-            'match' => hash_equals($expected, $signature)
-            
+            'match' => hash_equals($expected, $signature),
+
         ]);
 
         return hash_equals($expected, $signature);
