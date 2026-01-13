@@ -1,30 +1,29 @@
-name: Example 02 - Code Formatting with Laravel Pint
-run-name: Example 02 - Code Formatting with Laravel Pint
+name: Example 03 - Run Tests
+run-name: Example 03 - Run Tests
 
 on: 
-  push:
-    branches:
-      - main
+  # pull_request
+  workflow_dispatch
 
 jobs:
-  run-pint-job:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
 
-      # - name: install PHP & Composer (IF YOU WANT) #because it already instaled on ubantu latest
+      # - name: Install PHP & Composer (IF YOU WANT)
       
-      - name: install laravel pint
-        run: composer require laravel/pint --dev
+      - name: Install project dependencies
+        run: composer install -q #-q for quiet mode do not show all these lines when installing
       
-      - name: run pint
-        run: ./vendor/bin/pint
-      
-      - name: commit changes back
+      - name: Prepare project
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Run Pint updated" || exit 0
-          git push 
+          cp .env.example .env
+          php artisan key:generate
+      
+      - name: Run tests
+        env: 
+          DB_CONNECTION: 'sqlite'
+          DB_DATABASE: ':memory:'
+        run: php artisan test --compact
