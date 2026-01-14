@@ -13,7 +13,9 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       # - name: Install PHP & Composer (IF YOU WANT)
-      
+      - name: instal mysql
+        run: sudo systemctl start mysql.service
+
       - name: Install project dependencies
         run: composer install -q #-q for quiet mode do not show all these lines when installing
       
@@ -23,7 +25,4 @@ jobs:
           php artisan key:generate
       
       - name: Run tests
-        env: 
-          DB_CONNECTION: 'sqlite'
-          DB_DATABASE: ':memory:'
         run: php artisan test --compact
