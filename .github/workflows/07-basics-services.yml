@@ -1,46 +1,21 @@
-name: Example 06 - run tests with coverage
-run-name: Example 06 - run tests with coverage
+name: Example 07 - Deployment
+run-name: Example 07 - Deployment
 
 on: 
-  pull_request
-  #workflow_dispatch
-
-
+  push:
+    branches:
+      - main
 
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_DATABASE: github_actions_course
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-        ports:
-          - 3306:3306
-        options: >
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4.2.2
-
-      # - name: Install PHP & Composer (IF YOU WANT)
-      
-      - name: Install project dependencies
-        run: composer install -q
-      
-      - name: Prepare project
+      - name: Setup SSH key
         run: |
-          cp .env.example .env
-          php artisan key:generate
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_new
+          chmod 600 ~/.ssh/id_rsa_new
+          ssh-keyscan -H 136.113.67.64 >> ~/.ssh/known_hosts
       
-      - name: Run migrations
-        run: php artisan migrate
-      
-      - name: Run tests
-        run: XDEBUG_MODE=coverage php artisan test --coverage --coverage-text
+      - name: Deploy to Google Cloud
+        run: ssh -o StrictHostKeyChecking=no al_rehab@136.113.67.64 "cd ~/cicdpractice && git pull origin main && composer install"
