@@ -28,6 +28,7 @@ class GitHubSignatureValidator implements SignatureValidator
 
         $expected = 'sha256='.$computedSignature;
 
+        
         // Debugging logs
         \Log::info('GitHub Webhook Signature Check', [
             'header_name' => $config->signatureHeaderName,
