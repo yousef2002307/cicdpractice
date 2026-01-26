@@ -18,4 +18,4 @@ jobs:
           ssh-keyscan -H 136.113.67.64 >> ~/.ssh/known_hosts
       
       - name: Deploy to Google Cloud
-        run: ssh -o StrictHostKeyChecking=no al_rehab@136.113.67.64 "cd ~/cicdpractice && git pull origin main && composer install"
+        run: ssh -o StrictHostKeyChecking=no al_rehab@136.113.67.64 "cd ~/cicdpractice && git pull -v && composer install"
