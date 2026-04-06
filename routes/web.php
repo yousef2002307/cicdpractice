@@ -9,3 +9,5 @@ Route::get('/', function () {
 });
 
 Route::get('/sendemail/{invoice}', [InvoiceController::class, 'sendEmail']);
+
+Route::get('/invoices/{invoice}', [InvoiceController::class, 'show']);

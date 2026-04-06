@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice {{ $invoice->invoice_number }}</title>
+    <title>Invoice {{ $dto->invoiceNumber }}</title>
     <style>
         body {
             font-family: 'Helvetica', 'Arial', sans-serif;
@@ -99,7 +99,7 @@
         <h1 class="invoice-title">Invoice</h1>
         <div style="text-align: right;">
             <span class="label">Invoice Number</span>
-            <span class="value">{{ $invoice->invoice_number }}</span>
+            <span class="value">{{ $dto->invoiceNumber }}</span>
         </div>
     </div>
 
@@ -107,15 +107,15 @@
         <tr>
             <td class="info-col">
                 <span class="label">Billed To:</span>
-                <span class="value">{{ $invoice->user->name }}</span><br>
-                <span class="value">{{ $invoice->user->email }}</span>
+                <span class="value">{{ $dto->userName }}</span><br>
+                <span class="value">{{ $dto->userEmail }}</span>
             </td>
             <td class="info-col" style="text-align: right;">
                 <span class="label">Issue Date:</span>
-                <span class="value">{{ $invoice->invoice_date }}</span>
+                <span class="value">{{ $dto->invoiceDate }}</span>
                 <br><br>
                 <span class="label">Due Date:</span>
-                <span class="value">{{ $invoice->due_date }}</span>
+                <span class="value">{{ $dto->dueDate }}</span>
             </td>
         </tr>
     </table>
@@ -129,22 +129,22 @@
         </thead>
         <tbody>
             <tr>
-                <td>Professional Services - Invoice #{{ $invoice->invoice_number }}</td>
-                <td style="text-align: right;">${{ number_format($invoice->amount, 2) }}</td>
+                <td>Professional Services - Invoice #{{ $dto->invoiceNumber }}</td>
+                <td style="text-align: right;">${{ number_format($dto->total, 2) }}</td>
             </tr>
         </tbody>
     </table>
 
     <div class="total-section">
         <div class="total-box">
-            Total Due: ${{ number_format($invoice->amount, 2) }}
+            Total Due: ${{ number_format($dto->total, 2) }}
         </div>
     </div>
 
-    @if($invoice->notes)
+    @if($dto->notes)
     <div class="notes">
         <strong>Notes:</strong><br>
-        {{ $invoice->notes }}
+        {{ $dto->notes }}
     </div>
     @endif
 

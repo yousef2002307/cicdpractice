@@ -1,24 +1,24 @@
 <x-mail::message>
-# Invoice Alert: {{ $invoice->invoice_number }}
+# Invoice Alert: {{ $dto->invoiceNumber }}
 
-Dear **{{ $invoice->user->name }}**,
+Dear **{{ $dto->userName }}**,
 
 We have generated a new invoice for you. Please find the details below:
 
 <x-mail::panel>
 ### Summary
-- **Invoice #:** {{ $invoice->invoice_number }}
-- **Amount:** ${{ number_format($invoice->amount, 2) }}
-- **Status:** {{ ucfirst($invoice->status) }}
-- **Issue Date:** {{ $invoice->invoice_date }}
-- **Due Date:** {{ $invoice->due_date }}
+- **Invoice #:** {{ $dto->invoiceNumber }}
+- **Amount:** ${{ number_format($dto->total, 2) }}
+- **Status:** {{ ucfirst($dto->status) }}
+- **Issue Date:** {{ $dto->invoiceDate }}
+- **Due Date:** {{ $dto->dueDate }}
 </x-mail::panel>
 
-@if($invoice->notes)
-> **Note:** {{ $invoice->notes }}
+@if($dto->notes)
+> **Note:** {{ $dto->notes }}
 @endif
 
-<x-mail::button :url="config('app.url') . '/invoices/' . $invoice->id" color="primary">
+<x-mail::button :url="config('app.url') . '/invoices/' . $dto->id" color="primary">
 View Detailed Invoice
 </x-mail::button>
 

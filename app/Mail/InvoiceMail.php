@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use App\DTOs\InvoiceEmailDto;
 use Illuminate\Queue\SerializesModels;
 
 class InvoiceMail extends Mailable
@@ -19,7 +20,7 @@ class InvoiceMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Invoice $invoice)
+    public function __construct(public InvoiceEmailDto $dto)
     {
     }
 
@@ -29,7 +30,7 @@ class InvoiceMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Invoice Received: ' . $this->invoice->invoice_number,
+            subject: 'New Invoice Received: ' . $this->dto->id,
         );
     }
 
@@ -50,10 +51,10 @@ class InvoiceMail extends Mailable
      */
     public function attachments(): array
     {
-        $pdf = Pdf::loadView('invoices.pdf', ['invoice' => $this->invoice]);
+        $pdf = Pdf::loadView('invoices.pdf', ['dto' => $this->dto]);
 
         return [
-            Attachment::fromData(fn () => $pdf->output(), "Invoice-{$this->invoice->invoice_number}.pdf")
+            Attachment::fromData(fn () => $pdf->output(), "Invoice-{$this->dto->invoiceNumber}.pdf")
                 ->withMime('application/pdf'),
         ];
     }

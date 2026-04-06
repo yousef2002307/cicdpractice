@@ -6,6 +6,7 @@ use App\Models\Invoice;
 use App\Mail\InvoiceMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use App\DTOs\InvoiceEmailDto;
 
 class InvoiceEmailService
 {
@@ -15,12 +16,12 @@ class InvoiceEmailService
      * @param Invoice $invoice
      * @return void
      */
-    public function send(Invoice $invoice)
+    public function send(InvoiceEmailDto $dto)
     {
-        $user = $invoice->user;
+        $user = $dto->userEmail;
 
-        Mail::to($user->email)->send(new InvoiceMail($invoice));
+        Mail::to($user)->send(new InvoiceMail($dto));
 
-        Log::info("Email sent to {$user->email} for Invoice #{$invoice->invoice_number} with amount {$invoice->amount}");
+        Log::info("Email sent to {$user} for Invoice #{$dto->id} with amount {$dto->total}");
     }
 }
